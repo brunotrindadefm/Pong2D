@@ -7,7 +7,8 @@ public class BallControl : MonoBehaviour
 {
     public float speed;
     public float initialSpeed;
-    public float speedIncreaseFactor = 0.1f;
+    public float speedIncreaseFactor = 0.19f;
+    public float maxSpeed = 17.5f;
     public float randomDirectionX;
     public float randomDirectiony;
     public Rigidbody2D rig;
@@ -53,11 +54,13 @@ public class BallControl : MonoBehaviour
         // A bola irá um pouco para o lado sempre que colidir em algo
         rig.velocity += new Vector2(randomDirectionX, randomDirectiony);
 
-        // Aumentando a velocidade a cada colisão
+        // Aumentando a velocidade a cada colisão e atribuido velocidade máxima
         speed += speedIncreaseFactor;
+        speed = Mathf.Min(speed, maxSpeed);
 
         // Matendo a direção, mas aumentando a velocidade
         Vector2 currentVelocity = rig.velocity.normalized; // Obtém a direção atual
         rig.velocity = currentVelocity * speed; // Aplia a nova velocidade
+
     }
 }
