@@ -6,6 +6,7 @@ using UnityEngine;
 public class BallControl : MonoBehaviour
 {
     public float speed;
+    public float initialSpeed;
     public float speedIncreaseFactor = 0.1f;
     public float randomDirectionX;
     public float randomDirectiony;
@@ -15,14 +16,10 @@ public class BallControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialSpeed = speed;
         BallMove();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     // Método para mover a bola
     private void BallMove()
@@ -33,6 +30,18 @@ public class BallControl : MonoBehaviour
 
         // Aplica a velocidade inicial em uma posição aleátoria
         rig.velocity = new Vector2(randomX, randomY).normalized * speed;
+    }
+
+    public void ResetBall()
+    {
+        // Definindo como posição a bola no centro
+        transform.position = Vector2.zero;
+
+        // Reseta a velocidade da bola para padrão
+        speed = initialSpeed;
+
+        // Movimenta a bola novamente
+        BallMove();
     }
 
     // Método que irá ser chamado toda vez que tiver uma colisão da bola

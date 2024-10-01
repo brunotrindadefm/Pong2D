@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
 
     public float speed;
-    public bool player1;
+    public bool isPlayer1;
     public float yMin;
     public float yMax;
 
@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1)
+        if (isPlayer1)
         {
             MovePlayer1();
         }
